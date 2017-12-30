@@ -67,7 +67,20 @@ package seleniumTests;
 		address.sendKeys("Shalimar Bagh");
 		
 		WebElement postcode = driver.findElement(By.cssSelector("#billing_postcode"));
-		postcode.sendKeys("110088");		
+		postcode.sendKeys("110088");	
+		
+		WebElement countyDropDown = driver.findElement(By.cssSelector("#billing_state_field .select2-arrow"));
+		countyDropDown.click();
+		Thread.sleep(2000);
+		
+		List<WebElement> countyList = driver.findElements(By.cssSelector("#select2-drop ul li"));
+		for(WebElement county : countyList){
+			if(county.getText().equals("Delhi")) {
+				county.click();	
+				Thread.sleep(3000);
+				break;
+			}		
+		}
 		
 		WebElement shipToDifferetAddress = driver.findElement(By.cssSelector("#ship-to-different-address-checkbox"));
 		shipToDifferetAddress.click();
