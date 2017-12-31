@@ -113,12 +113,14 @@ public class Steps {
 	}
 
 	@When("^place the order$")
-	public void place_the_order() {
+	public void place_the_order() throws InterruptedException {
 		WebElement acceptTC = driver.findElement(By.cssSelector("#terms.input-checkbox"));
 		acceptTC.click();
 		
 		WebElement placeOrder = driver.findElement(By.cssSelector("#place_order"));
 		placeOrder.submit();
+		Thread.sleep(3000);
+		driver.quit();
 	}	
 
 
