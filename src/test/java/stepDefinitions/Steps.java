@@ -23,7 +23,8 @@ public class Steps {
 		driver = new ChromeDriver();
 		driver.manage().window().maximize();
 		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-		driver.get("http://www.shop.demoqa.com");
+		home = new HomePage(driver);
+		home.navigateTo_HomePage();	
 	}
 
 	@When("^he search for \"([^\"]*)\"$")
