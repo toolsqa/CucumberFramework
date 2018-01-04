@@ -29,7 +29,6 @@ public class Steps {
 
 	@When("^he search for \"([^\"]*)\"$")
 	public void he_search_for(String product)  {
-		home = new HomePage(driver);
 		home.perform_Search(product);
 	}
 
