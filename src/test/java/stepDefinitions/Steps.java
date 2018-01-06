@@ -1,11 +1,13 @@
 package stepDefinitions;
 
 import java.util.concurrent.TimeUnit;
+
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.When;
-import dataProviders.ConfigFileReader;
+import managers.FileReaderManager;
 import managers.PageObjectManager;
 import pageObjects.CartPage;
 import pageObjects.CheckoutPage;
@@ -19,15 +21,14 @@ public class Steps {
 	CartPage cartPage;
 	CheckoutPage checkoutPage;
 	PageObjectManager pageObjectManager;	
-	ConfigFileReader configFileReader;
+	
 	
 	@Given("^user is on Home Page$")
 	public void user_is_on_Home_Page(){
-		configFileReader= new ConfigFileReader();
-		System.setProperty("webdriver.chrome.driver", configFileReader.getDriverPath());
+		System.setProperty("webdriver.chrome.driver", FileReaderManager.getInstance().getConfigReader().getDriverPath());
 		driver = new ChromeDriver();
 		driver.manage().window().maximize();
-		driver.manage().timeouts().implicitlyWait(configFileReader.getImplicitlyWait(), TimeUnit.SECONDS);
+		driver.manage().timeouts().implicitlyWait(FileReaderManager.getInstance().getConfigReader().getImplicitlyWait(), TimeUnit.SECONDS);
 		pageObjectManager = new PageObjectManager(driver);
 		homePage = pageObjectManager.getHomePage();
 		homePage.navigateTo_HomePage();	
