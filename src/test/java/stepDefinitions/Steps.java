@@ -5,6 +5,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.When;
+import dataProviders.ConfigFileReader;
 import managers.PageObjectManager;
 import pageObjects.CartPage;
 import pageObjects.CheckoutPage;
@@ -17,14 +18,16 @@ public class Steps {
 	ProductListingPage productListingPage;
 	CartPage cartPage;
 	CheckoutPage checkoutPage;
-	PageObjectManager pageObjectManager;
+	PageObjectManager pageObjectManager;	
+	ConfigFileReader configFileReader;
 	
 	@Given("^user is on Home Page$")
 	public void user_is_on_Home_Page(){
-		System.setProperty("webdriver.chrome.driver","C:\\ToolsQA\\Libs\\Drivers\\chromedriver.exe");
+		configFileReader= new ConfigFileReader();
+		System.setProperty("webdriver.chrome.driver", configFileReader.getDriverPath());
 		driver = new ChromeDriver();
 		driver.manage().window().maximize();
-		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+		driver.manage().timeouts().implicitlyWait(configFileReader.getImplicitlyWait(), TimeUnit.SECONDS);
 		pageObjectManager = new PageObjectManager(driver);
 		homePage = pageObjectManager.getHomePage();
 		homePage.navigateTo_HomePage();	
@@ -50,13 +53,13 @@ public class Steps {
 	}
 	
 	@When("^enter personal details on checkout page$")
-	public void enter_personal_details_on_checkout_page() throws InterruptedException {
+	public void enter_personal_details_on_checkout_page(){
 		checkoutPage = pageObjectManager.getCheckoutPage();
 		checkoutPage.fill_PersonalDetails();	
 	}
 	
 	@When("^select same delivery address$")
-	public void select_same_delivery_address() throws InterruptedException{
+	public void select_same_delivery_address(){
 		checkoutPage.check_ShipToDifferentAddress(false);
 	}
 	
@@ -66,10 +69,9 @@ public class Steps {
 	}
 
 	@When("^place the order$")
-	public void place_the_order() throws InterruptedException {
+	public void place_the_order() {
 		checkoutPage.check_TermsAndCondition(true);
-		checkoutPage.clickOn_PlaceOrder();
-		
+		checkoutPage.clickOn_PlaceOrder();		
 		driver.quit();
 	}	
 }

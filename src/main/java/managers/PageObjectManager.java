@@ -17,7 +17,7 @@ public class PageObjectManager {
 		this.driver = driver;
 	}
 	
-	public HomePage getHomePage() {
+	public HomePage getHomePage(){
 		return (homePage == null) ? new HomePage(driver) : homePage;
 	}
 	
