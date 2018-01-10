@@ -32,7 +32,6 @@ public class CheckoutPageSteps {
 	public void place_the_order() {
 		checkoutPage.check_TermsAndCondition(true);
 		checkoutPage.clickOn_PlaceOrder();		
-		testContext.getWebDriverManager().quitDriver();
 	}	
 
 }
