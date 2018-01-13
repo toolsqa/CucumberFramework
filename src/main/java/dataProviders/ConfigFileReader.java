@@ -14,19 +14,17 @@ public class ConfigFileReader {
 	private final String propertyFilePath= "configs//Configuration.properties";
 	
 	public ConfigFileReader(){
-		BufferedReader reader;
+		BufferedReader reader = null;
 		try {
 			reader = new BufferedReader(new FileReader(propertyFilePath));
 			properties = new Properties();
-			try {
-				properties.load(reader);
-				reader.close();
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
+			try { properties.load(reader); }
+			catch (IOException e) { e.printStackTrace(); }
 		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-			throw new RuntimeException("Configuration.properties not found at " + propertyFilePath);
+			throw new RuntimeException("Properties file not found at path : " + propertyFilePath);
+		}finally {
+			try { if(reader != null) reader.close(); }
+			catch (IOException ignore) {}
 		}		
 	}
 	
@@ -73,6 +71,12 @@ public class ConfigFileReader {
 		String windowSize = properties.getProperty("windowMaximize");
 		if(windowSize != null) return Boolean.valueOf(windowSize);
 		return true;
+	}
+	
+	public String getTestDataResourcePath(){
+		String testDataResourcePath = properties.getProperty("testDataResourcePath");
+		if(testDataResourcePath!= null) return testDataResourcePath;
+		else throw new RuntimeException("Test Data Resource Path not specified in the Configuration.properties file for the Key:testDataResourcePath");		
 	}
 
 }
