@@ -8,6 +8,8 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
 import org.openqa.selenium.support.PageFactory;
 
+import selenium.Wait;
+
 public class ProductListingPage {
 	WebDriver driver;
 	
@@ -24,6 +26,7 @@ public class ProductListingPage {
 	
 	public void clickOn_AddToCart() {
 		btn_AddToCart.click();
+		Wait.untilJqueryIsDone(driver);
 	}
 	
 	public void select_Product(int productNumber) {

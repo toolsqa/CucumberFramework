@@ -6,6 +6,8 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
 import org.openqa.selenium.support.PageFactory;
 
+import selenium.Wait;
+
 public class CartPage {
 	WebDriver driver;
 	
@@ -27,8 +29,7 @@ public class CartPage {
 	
 	public void clickOn_ContinueToCheckout(){
 		btn_ContinueToCheckout.click();
-		try { Thread.sleep(5000);}
-		catch (InterruptedException e) {}
+		Wait.untilPageLoadComplete(driver);
 	}
 	
 }
