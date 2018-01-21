@@ -12,7 +12,7 @@ import enums.EnvironmentType;
 public class ConfigFileReader {	
 	private Properties properties;
 	private final String propertyFilePath= "configs//Configuration.properties";
-	
+
 	public ConfigFileReader(){
 		BufferedReader reader = null;
 		try {
@@ -25,7 +25,7 @@ public class ConfigFileReader {
 		}finally {
 			try { if(reader != null) reader.close(); }
 			catch (IOException ignore) {}
-		}		
+		}
 	}
 	
 	public String getDriverPath(){
@@ -77,6 +77,12 @@ public class ConfigFileReader {
 		String testDataResourcePath = properties.getProperty("testDataResourcePath");
 		if(testDataResourcePath!= null) return testDataResourcePath;
 		else throw new RuntimeException("Test Data Resource Path not specified in the Configuration.properties file for the Key:testDataResourcePath");		
+	}
+	
+	public String getReportConfigPath(){
+		String reportConfigPath = properties.getProperty("reportConfigPath");
+		if(reportConfigPath!= null) return reportConfigPath;
+		else throw new RuntimeException("Report Config Path not specified in the Configuration.properties file for the Key:reportConfigPath");		
 	}
 
 }
