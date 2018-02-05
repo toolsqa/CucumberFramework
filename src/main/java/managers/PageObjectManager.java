@@ -8,34 +8,34 @@ import pageObjects.HomePage;
 import pageObjects.ProductListingPage;
 
 public class PageObjectManager {
-	WebDriver driver;
-	ProductListingPage productListingPage;
-	CartPage cartPage;
-	HomePage homePage;
-	CheckoutPage checkoutPage;
-	ConfirmationPage confirmationPage;
+	private WebDriver driver;
+	private ProductListingPage productListingPage;
+	private CartPage cartPage;
+	private HomePage homePage;
+	private CheckoutPage checkoutPage;
+	private ConfirmationPage confirmationPage;
 	
 	public PageObjectManager(WebDriver driver) {
 		this.driver = driver;
 	}
 	
 	public HomePage getHomePage(){
-		return (homePage == null) ? new HomePage(driver) : homePage;
+		return (homePage == null) ? homePage = new HomePage(driver) : homePage;
 	}
 	
 	public ProductListingPage getProductListingPage() {
-		return (productListingPage == null) ? new ProductListingPage(driver) : productListingPage;
+		return (productListingPage == null) ? productListingPage = new ProductListingPage(driver) : productListingPage;
 	}
 	
 	public CartPage getCartPage() {
-		return (cartPage == null) ? new CartPage(driver) : cartPage;
+		return (cartPage == null) ? cartPage = new CartPage(driver) : cartPage;
 	}
 	
 	public CheckoutPage getCheckoutPage() {
-		return (checkoutPage == null) ? new CheckoutPage(driver) : checkoutPage;
+		return (checkoutPage == null) ? checkoutPage = new CheckoutPage(driver) : checkoutPage;
 	}
 	
 	public ConfirmationPage getConfirmationPage() {
-		return (confirmationPage == null) ? new ConfirmationPage(driver) : confirmationPage;
+		return (confirmationPage == null) ? confirmationPage = new ConfirmationPage(driver) : confirmationPage;
 	}
 }

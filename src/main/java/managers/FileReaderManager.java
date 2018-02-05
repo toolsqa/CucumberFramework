@@ -17,10 +17,10 @@ public class FileReaderManager {
 	 }
 	 
 	 public ConfigFileReader getConfigReader() {
-		 return (configFileReader == null) ? new ConfigFileReader() : configFileReader;
+		 return (configFileReader == null) ? configFileReader = new ConfigFileReader() : configFileReader;
 	 }
 	 
 	 public JsonDataReader getJsonReader(){
-		 return (jsonDataReader == null) ? new JsonDataReader() : jsonDataReader;
+		 return (jsonDataReader == null) ? jsonDataReader = new JsonDataReader() : jsonDataReader;
 	}
 }
